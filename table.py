@@ -1,5 +1,3 @@
-# SLR(1)
-
 import copy
 
 class Ptable:
@@ -447,12 +445,7 @@ class Ptable:
         self.term_userdef = ['IF', 'THEN', 'END', 'ID', 'ASSIGN', 'SEMICOLON', 'NUM']
         self.start_symbol = self.nonterm_userdef[0]
 
-        print("\nOriginal grammar input:\n")
-        for y in self.rules:
-            print(y)
-
-        # print processed rules
-        print("\nGrammar after Augmentation: \n")
+        print("\ngrammar augmentation: \n")
         self.separatedRulesList = self.grammarAugmentation(self.rules,
                                 self.nonterm_userdef,
                                 self.start_symbol)
@@ -460,7 +453,7 @@ class Ptable:
 
         # find closure
         self.start_symbol = self.separatedRulesList[0][0]
-        print("\nCalculated closure: I0\n")
+        print("\ncalculated closure: I0\n")
         I0 = self.findClosure(0, self.start_symbol)
         self.printResult(I0)
 
@@ -479,13 +472,13 @@ class Ptable:
         self.generateStates(self.statesDict)
 
         # print goto states
-        print("\nStates Generated: \n")
+        print("\ngenerated states: \n")
         for st in self.statesDict:
             print(f"State = I{st}")
             self.printResult(self.statesDict[st])
             print()
 
-        print("Result of GOTO computation:\n")
+        print("result of GOTO computation:\n")
         self.printAllGOTO(self.stateMap)
 
         # "follow computation" for making REDUCE entries
